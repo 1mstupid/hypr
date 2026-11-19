@@ -3,8 +3,6 @@ hl.config({
 		border_size = 0, -- Maps from border_width = 0
 		gaps_in = 5,
 		gaps_out = 10,
-		["col.active_border"] = _G.colors.active_border,
-		["col.inactive_border"] = _G.colors.inactive_border,
 		layout = "master",
 	},
 	decoration = {
