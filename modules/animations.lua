@@ -1,12 +1,28 @@
 -- Animation curves
 local beziers = {
 	{
-		name = "shellOut",
-		points = { 0.33, 1.0, 0.68, 1.0 },
+		name = "instant",
+		points = { 0, 0, 1, 1 },
 	},
 	{
-		name = "shellInOut",
-		points = { 0.65, 0.0, 0.35, 1.0 },
+		name = "smooth",
+		points = { 0.2, 0, 0, 1 },
+	},
+	{
+		name = "easeInExpo",
+		points = { 0.7, 0, 0.84, 0 },
+	},
+	{
+		name = "easeOutExpo",
+		points = { 0.16, 1, 0.3, 1 },
+	},
+	{
+		name = "softEase",
+		points = { 0.26, 0.26, 0.15, 1 },
+	},
+	{
+		name = "mediumEase",
+		points = { 0.4, 0, 0.2, 1 },
 	},
 }
 
@@ -23,48 +39,80 @@ end
 
 -- Animation definitions
 local animations = {
-	-- Windows
+	-- Windows & Layers
+	{
+		leaf = "layersIn",
+		speed = 3,
+		bezier = "easeOutExpo",
+		style = "popin",
+	},
+	{
+		leaf = "layersOut",
+		speed = 3,
+		bezier = "easeOutExpo",
+		style = "popin",
+	},
+	{
+		leaf = "windows",
+		speed = 3,
+		bezier = "easeOutExpo",
+		style = "popin",
+	},
 	{
 		leaf = "windowsIn",
 		speed = 3,
-		bezier = "shellOut",
+		bezier = "easeOutExpo",
 		style = "slide",
 	},
 	{
 		leaf = "windowsOut",
-		speed = 2,
-		bezier = "shellInOut",
-		style = "popin 92%",
-	},
-	{
-		leaf = "windowsMove",
-		speed = 2,
-		bezier = "shellOut",
+		speed = 3,
+		bezier = "easeOutExpo",
+		style = "slide",
 	},
 
 	-- Workspaces
 	{
 		leaf = "workspaces",
 		speed = 3,
-		bezier = "shellInOut",
+		bezier = "easeOutExpo",
 		style = "slide",
 	},
+	{
+		leaf = "specialWorkspace",
+		speed = 3,
+		bezier = "easeOutExpo",
+		style = "slidevert",
+	},
 
-	-- Border & Layers
+	-- Border & Fade
 	{
 		leaf = "border",
-		speed = 2,
-		bezier = "shellOut",
+		enabled = false,
+		speed = 3,
+		bezier = "smooth",
 	},
 	{
 		leaf = "fade",
-		speed = 2,
-		bezier = "shellOut",
+		enabled = false,
+		speed = 3,
+		bezier = "easeOutExpo",
 	},
 	{
-		leaf = "layers",
+		leaf = "fadeLayersIn",
+		enabled = false,
 		speed = 3,
-		bezier = "shellInOut",
+		bezier = "easeOutExpo",
+	},
+	{
+		leaf = "fadeLayersOut",
+		enabled = false,
+		speed = 3,
+		bezier = "easeOutExpo",
+	},
+	{
+		leaf = "monitorAdded",
+		enabled = false,
 	},
 }
 
@@ -72,7 +120,7 @@ local animations = {
 for _, anim in ipairs(animations) do
 	hl.animation({
 		leaf = anim.leaf,
-		enabled = true,
+		enabled = anim.enabled ~= false,
 		speed = anim.speed,
 		bezier = anim.bezier,
 		style = anim.style or "",
@@ -83,5 +131,6 @@ end
 hl.config({
 	animations = {
 		enabled = true,
+		workspace_wraparound = false,
 	},
 })

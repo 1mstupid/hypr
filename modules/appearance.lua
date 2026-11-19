@@ -6,26 +6,34 @@ hl.config({
 		layout = "master",
 	},
 	decoration = {
-		rounding = 20, -- Maps from corner_radius = 20
-		active_opacity = 1.0, -- Maps from drag_opacity = 1.0
+		rounding = 18,
+		rounding_power = 2.0,
+		active_opacity = 1.0,
 		inactive_opacity = 1.0,
-		fullscreen_opacity = 1.0, -- Ensures opaque fullscreen behavior
+		dim_inactive = false,
+		dim_strength = 0.045,
+		dim_special = 0.07,
 
 		blur = {
 			enabled = true,
-			size = 13, -- Hyprland's equivalent to blur radius
-			passes = 2, -- passes = 2
-			noise = 0.0, -- noise = 0
-			brightness = 0.8,
-			contrast = 2.0,
-			vibrancy = 0.95, -- Maps closely to saturation adjustment
+			size = 8,
+			passes = 2,
+			noise = 0.125,
+			vibrancy = 0.2,
+			brightness = 0.85,
+			contrast = 1.3,
+			special = true,
+			new_optimizations = true,
+			popups = true,
+			ignore_opacity = true,
+			xray = false,
 		},
 
 		shadow = {
 			enabled = true,
-			range = 30, -- Maps from softness = 30
-			render_power = 3,
-			color = "#000000FF",
+			range = 50,
+			render_power = 4,
+			color = "0x48000000",
 		},
 	},
 })
