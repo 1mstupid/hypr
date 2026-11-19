@@ -11,8 +11,5 @@ hl.config({
 		center_underfull_strip = true,
 		center_focused = "never",
 	},
-	monocle = {
-		-- Monocle layout settings (forces windows to maximize/fullscreen within the workspace view)
-		no_border_on_monocle = true,
-	},
+	monocle = {},
 })
