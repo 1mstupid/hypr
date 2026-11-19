@@ -75,5 +75,6 @@ hl.config({
 		{ "ignorezero, quickshell" },
 		-- Skip open/close animations for quickshell layers
 		{ "noanim, quickshell" },
+		{ "noanim, qs-" },
 	},
 })
