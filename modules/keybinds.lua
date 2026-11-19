@@ -58,11 +58,68 @@ bind("ALT", "TAB", hl.dsp.window.cycle_next())
 exec(mod, "Z", "woomer")
 
 -- Layout Controls
--- These are custom dispatcher commands, invoked through hyprctl.
-hl.bind(mod .. "+ SHIFT + L", hl.dsp.layout("next"))
-hl.bind(mod .. "+ SHIFT + D", hl.dsp.layout("monocle"))
-hl.bind(mod .. "+ SHIFT + S", hl.dsp.layout("scrolling"))
-hl.bind(mod .. "+ SHIFT + M", hl.dsp.layout("master"))
+-- Switch layouts independently for each workspace.
+
+local layouts = {
+	"dwindle",
+	"master",
+	"scrolling",
+	"monocle",
+}
+
+-- Get the currently active workspace, including special workspaces.
+local function get_active_workspace()
+	return hl.get_active_special_workspace() or hl.get_active_workspace()
+end
+
+-- Apply a layout to the current workspace.
+local function set_layout(layout)
+	local workspace = get_active_workspace()
+
+	if not workspace then
+		return
+	end
+
+	hl.workspace_rule({
+		workspace = workspace.special and tostring(workspace.name) or "name:" .. tostring(workspace.name),
+		layout = layout,
+	})
+end
+
+-- Cycle through available layouts.
+bind(mod .. " SHIFT", "L", function()
+	local workspace = get_active_workspace()
+
+	if not workspace then
+		return
+	end
+
+	local current = workspace.tiled_layout
+	local next_layout = layouts[1]
+
+	for i, layout in ipairs(layouts) do
+		if layout == current then
+			next_layout = layouts[(i % #layouts) + 1]
+			break
+		end
+	end
+
+	set_layout(next_layout)
+end)
+
+-- Select specific layouts.
+bind(mod .. " SHIFT", "D", function()
+	set_layout("monocle")
+end)
+
+bind(mod .. " SHIFT", "S", function()
+	set_layout("scrolling")
+end)
+
+bind(mod .. " SHIFT", "M", function()
+	set_layout("master")
+end)
+
 -- Window Actions
 bind(mod, "Q", hl.dsp.window.close())
 

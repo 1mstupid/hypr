@@ -1,28 +1,20 @@
 -- Animation curves
 local beziers = {
 	{
-		name = "instant",
-		points = { 0, 0, 1, 1 },
+		name = "specialWorkSwitch",
+		points = { 0.05, 0.7, 0.1, 1 },
 	},
 	{
-		name = "smooth",
+		name = "emphasizedAccel",
+		points = { 0.3, 0, 0.8, 0.15 },
+	},
+	{
+		name = "emphasizedDecel",
+		points = { 0.05, 0.7, 0.1, 1 },
+	},
+	{
+		name = "standard",
 		points = { 0.2, 0, 0, 1 },
-	},
-	{
-		name = "easeInExpo",
-		points = { 0.7, 0, 0.84, 0 },
-	},
-	{
-		name = "easeOutExpo",
-		points = { 0.16, 1, 0.3, 1 },
-	},
-	{
-		name = "softEase",
-		points = { 0.26, 0.26, 0.15, 1 },
-	},
-	{
-		name = "mediumEase",
-		points = { 0.4, 0, 0.2, 1 },
 	},
 }
 
@@ -42,77 +34,67 @@ local animations = {
 	-- Windows & Layers
 	{
 		leaf = "layersIn",
-		speed = 3,
-		bezier = "easeOutExpo",
-		style = "popin",
+		speed = 5,
+		bezier = "emphasizedDecel",
+		style = "slide",
 	},
 	{
 		leaf = "layersOut",
-		speed = 3,
-		bezier = "easeOutExpo",
-		style = "popin",
+		speed = 4,
+		bezier = "emphasizedAccel",
+		style = "slide",
 	},
 	{
-		leaf = "windows",
-		speed = 3,
-		bezier = "easeOutExpo",
-		style = "popin",
+		leaf = "fadeLayers",
+		speed = 5,
+		bezier = "standard",
 	},
+
+	-- Windows
 	{
 		leaf = "windowsIn",
-		speed = 3,
-		bezier = "easeOutExpo",
-		style = "slide",
+		speed = 5,
+		bezier = "emphasizedDecel",
 	},
 	{
 		leaf = "windowsOut",
 		speed = 3,
-		bezier = "easeOutExpo",
-		style = "slide",
+		bezier = "emphasizedAccel",
+	},
+	{
+		leaf = "windowsMove",
+		speed = 6,
+		bezier = "standard",
 	},
 
 	-- Workspaces
 	{
 		leaf = "workspaces",
-		speed = 3,
-		bezier = "easeOutExpo",
-		style = "slide",
+		speed = 5,
+		bezier = "standard",
 	},
 	{
 		leaf = "specialWorkspace",
-		speed = 3,
-		bezier = "easeOutExpo",
-		style = "slidevert",
+		speed = 4,
+		bezier = "specialWorkSwitch",
+		style = "slidefadevert 15%",
 	},
 
 	-- Border & Fade
 	{
-		leaf = "border",
-		enabled = false,
-		speed = 3,
-		bezier = "smooth",
-	},
-	{
 		leaf = "fade",
-		enabled = false,
-		speed = 3,
-		bezier = "easeOutExpo",
+		speed = 6,
+		bezier = "standard",
 	},
 	{
-		leaf = "fadeLayersIn",
-		enabled = false,
-		speed = 3,
-		bezier = "easeOutExpo",
+		leaf = "fadeDim",
+		speed = 6,
+		bezier = "standard",
 	},
 	{
-		leaf = "fadeLayersOut",
-		enabled = false,
-		speed = 3,
-		bezier = "easeOutExpo",
-	},
-	{
-		leaf = "monitorAdded",
-		enabled = false,
+		leaf = "border",
+		speed = 6,
+		bezier = "standard",
 	},
 }
 
@@ -131,6 +113,5 @@ end
 hl.config({
 	animations = {
 		enabled = true,
-		workspace_wraparound = false,
 	},
 })
