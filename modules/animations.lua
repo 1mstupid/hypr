@@ -16,6 +16,14 @@ local beziers = {
 		name = "standard",
 		points = { 0.25, 1, 0.5, 1 },
 	},
+	{
+		name = "shellBounce",
+		points = { 0.34, 1.56, 0.64, 1 },
+	},
+	{
+		name = "shellSettle",
+		points = { 0.33, 1, 0.68, 1 },
+	},
 }
 
 -- Register animation curves
@@ -34,37 +42,37 @@ local animations = {
 	-- Windows & Layers
 	{
 		leaf = "layersIn",
-		speed = 4,
-		bezier = "emphasizedDecel",
+		speed = 1.8,
+		bezier = "shellBounce",
 		style = "slide",
 	},
 	{
 		leaf = "layersOut",
-		speed = 4,
-		bezier = "emphasizedAccel",
+		speed = 1.8,
+		bezier = "shellBounce",
 		style = "slide",
 	},
 	{
 		leaf = "fadeLayers",
-		speed = 4,
-		bezier = "standard",
+		speed = 1.2,
+		bezier = "shellSettle",
 	},
 
 	-- Windows
 	{
 		leaf = "windowsIn",
-		speed = 4,
-		bezier = "emphasizedDecel",
+		speed = 1.8,
+		bezier = "shellBounce",
 	},
 	{
 		leaf = "windowsOut",
-		speed = 4,
-		bezier = "emphasizedAccel",
+		speed = 1.8,
+		bezier = "shellBounce",
 	},
 	{
 		leaf = "windowsMove",
-		speed = 5,
-		bezier = "standard",
+		speed = 1.8,
+		bezier = "shellSettle",
 	},
 
 	-- Workspaces
