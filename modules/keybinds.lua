@@ -67,15 +67,12 @@ local layouts = {
 	"monocle",
 }
 
--- Get the currently active workspace, including special workspaces.
 local function get_active_workspace()
 	return hl.get_active_special_workspace() or hl.get_active_workspace()
 end
 
--- Apply a layout to the current workspace.
 local function set_layout(layout)
 	local workspace = get_active_workspace()
-
 	if not workspace then
 		return
 	end
@@ -86,30 +83,29 @@ local function set_layout(layout)
 	})
 end
 
--- Cycle through available layouts.
+-- Cycle layouts
 bind(mod .. " SHIFT", "L", function()
 	local workspace = get_active_workspace()
-
 	if not workspace then
 		return
 	end
 
 	local current = workspace.tiled_layout
-	local next_layout = layouts[1]
+	local index = 1
 
 	for i, layout in ipairs(layouts) do
 		if layout == current then
-			next_layout = layouts[(i % #layouts) + 1]
+			index = (i % #layouts) + 1
 			break
 		end
 	end
 
-	set_layout(next_layout)
+	set_layout(layouts[index])
 end)
 
--- Select specific layouts.
+-- Direct layout selection
 bind(mod .. " SHIFT", "D", function()
-	set_layout("monocle")
+	set_layout("dwindle")
 end)
 
 bind(mod .. " SHIFT", "S", function()

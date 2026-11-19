@@ -34,48 +34,48 @@ local animations = {
 	-- Windows & Layers
 	{
 		leaf = "layersIn",
-		speed = 5,
+		speed = 15,
 		bezier = "emphasizedDecel",
 		style = "slide",
 	},
 	{
 		leaf = "layersOut",
-		speed = 4,
+		speed = 18,
 		bezier = "emphasizedAccel",
 		style = "slide",
 	},
 	{
 		leaf = "fadeLayers",
-		speed = 5,
+		speed = 15,
 		bezier = "standard",
 	},
 
 	-- Windows
 	{
 		leaf = "windowsIn",
-		speed = 5,
+		speed = 15,
 		bezier = "emphasizedDecel",
 	},
 	{
 		leaf = "windowsOut",
-		speed = 3,
+		speed = 18,
 		bezier = "emphasizedAccel",
 	},
 	{
 		leaf = "windowsMove",
-		speed = 6,
+		speed = 20,
 		bezier = "standard",
 	},
 
 	-- Workspaces
 	{
 		leaf = "workspaces",
-		speed = 5,
+		speed = 18,
 		bezier = "standard",
 	},
 	{
 		leaf = "specialWorkspace",
-		speed = 4,
+		speed = 15,
 		bezier = "specialWorkSwitch",
 		style = "slidefadevert 15%",
 	},
@@ -83,17 +83,17 @@ local animations = {
 	-- Border & Fade
 	{
 		leaf = "fade",
-		speed = 6,
+		speed = 18,
 		bezier = "standard",
 	},
 	{
 		leaf = "fadeDim",
-		speed = 6,
+		speed = 18,
 		bezier = "standard",
 	},
 	{
 		leaf = "border",
-		speed = 6,
+		speed = 20,
 		bezier = "standard",
 	},
 }
