@@ -73,5 +73,7 @@ hl.config({
 		-- Add blur to quickshell layers/surfaces
 		{ "blur, quickshell" },
 		{ "ignorezero, quickshell" },
+		-- Skip open/close animations for quickshell layers
+		{ "noanim, quickshell" },
 	},
 })

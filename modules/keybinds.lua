@@ -71,6 +71,22 @@ local function get_active_workspace()
 	return hl.get_active_special_workspace() or hl.get_active_workspace()
 end
 
+-- Build the selector Hyprland expects for a workspace rule.
+-- Special workspaces use their full name, named workspaces use "name:<name>",
+-- and plain numbered workspaces use their id.
+local function workspace_selector(workspace)
+	if workspace.special then
+		return tostring(workspace.name)
+	end
+
+	local name = tostring(workspace.name)
+	if name ~= tostring(workspace.id) then
+		return "name:" .. name
+	end
+
+	return tostring(workspace.id)
+end
+
 local function set_layout(layout)
 	local workspace = get_active_workspace()
 	if not workspace then
@@ -78,7 +94,7 @@ local function set_layout(layout)
 	end
 
 	hl.workspace_rule({
-		workspace = workspace.special and tostring(workspace.name) or "name:" .. tostring(workspace.name),
+		workspace = workspace_selector(workspace),
 		layout = layout,
 	})
 end
@@ -91,16 +107,16 @@ bind(mod .. " SHIFT", "L", function()
 	end
 
 	local current = workspace.tiled_layout
-	local index = 1
+	local next_layout = layouts[1]
 
 	for i, layout in ipairs(layouts) do
 		if layout == current then
-			index = (i % #layouts) + 1
+			next_layout = layouts[(i % #layouts) + 1]
 			break
 		end
 	end
 
-	set_layout(layouts[index])
+	set_layout(next_layout)
 end)
 
 -- Direct layout selection

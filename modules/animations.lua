@@ -2,7 +2,7 @@
 local beziers = {
 	{
 		name = "specialWorkSwitch",
-		points = { 0.05, 0.7, 0.1, 1 },
+		points = { 0.05, 0.9, 0.1, 1 },
 	},
 	{
 		name = "emphasizedAccel",
@@ -10,11 +10,11 @@ local beziers = {
 	},
 	{
 		name = "emphasizedDecel",
-		points = { 0.05, 0.7, 0.1, 1 },
+		points = { 0.05, 0.9, 0.1, 1 },
 	},
 	{
 		name = "standard",
-		points = { 0.2, 0, 0, 1 },
+		points = { 0.25, 1, 0.5, 1 },
 	},
 }
 
@@ -34,48 +34,48 @@ local animations = {
 	-- Windows & Layers
 	{
 		leaf = "layersIn",
-		speed = 15,
+		speed = 4,
 		bezier = "emphasizedDecel",
 		style = "slide",
 	},
 	{
 		leaf = "layersOut",
-		speed = 18,
+		speed = 4,
 		bezier = "emphasizedAccel",
 		style = "slide",
 	},
 	{
 		leaf = "fadeLayers",
-		speed = 15,
+		speed = 4,
 		bezier = "standard",
 	},
 
 	-- Windows
 	{
 		leaf = "windowsIn",
-		speed = 15,
+		speed = 4,
 		bezier = "emphasizedDecel",
 	},
 	{
 		leaf = "windowsOut",
-		speed = 18,
+		speed = 4,
 		bezier = "emphasizedAccel",
 	},
 	{
 		leaf = "windowsMove",
-		speed = 20,
+		speed = 5,
 		bezier = "standard",
 	},
 
 	-- Workspaces
 	{
 		leaf = "workspaces",
-		speed = 18,
+		speed = 5,
 		bezier = "standard",
 	},
 	{
 		leaf = "specialWorkspace",
-		speed = 15,
+		speed = 4,
 		bezier = "specialWorkSwitch",
 		style = "slidefadevert 15%",
 	},
@@ -83,17 +83,17 @@ local animations = {
 	-- Border & Fade
 	{
 		leaf = "fade",
-		speed = 18,
+		speed = 5,
 		bezier = "standard",
 	},
 	{
 		leaf = "fadeDim",
-		speed = 18,
+		speed = 5,
 		bezier = "standard",
 	},
 	{
 		leaf = "border",
-		speed = 20,
+		speed = 6,
 		bezier = "standard",
 	},
 }
