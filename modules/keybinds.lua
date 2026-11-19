@@ -59,10 +59,10 @@ exec(mod, "Z", "woomer")
 
 -- Layout Controls
 -- These are custom dispatcher commands, invoked through hyprctl.
-hl.bind(mod .. " SHIFT + L", hl.dsp.layout("next"))
-hl.bind(mod .. " SHIFT + D", hl.dsp.layout("monocle"))
-hl.bind(mod .. " SHIFT + S", hl.dsp.layout("scrolling"))
-hl.bind(mod .. " SHIFT + M", hl.dsp.layout("master"))
+hl.bind(mod .. "+ SHIFT + L", hl.dsp.layout("next"))
+hl.bind(mod .. "+ SHIFT + D", hl.dsp.layout("monocle"))
+hl.bind(mod .. "+ SHIFT + S", hl.dsp.layout("scrolling"))
+hl.bind(mod .. "+ SHIFT + M", hl.dsp.layout("master"))
 -- Window Actions
 bind(mod, "Q", hl.dsp.window.close())
 
