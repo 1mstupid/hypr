@@ -24,6 +24,7 @@ hl.config({
 		{ "", "XF86AudioMute", "exec", "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle" },
 
 		-- Window Focus
+		{ mod, "Tab", "hyprexpo:expo", "toggle" },
 		{ mod, "h", "movefocus", "l" },
 		{ mod, "Left", "movefocus", "l" },
 		{ mod, "l", "movefocus", "r" },
