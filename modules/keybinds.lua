@@ -1,82 +1,115 @@
+-- Modifier configuration
 local mod = "SUPER"
 
-hl.config({
-	bind = {
-		-- Applications & Quickshell IPC
-		{ mod, "Return", "exec", "alacritty" },
-		{ mod, "t", "exec", "quickshell ipc call applauncher toggle" },
-		{ mod .. " SHIFT", "v", "exec", "quickshell ipc call clipboard toggle" },
-		{ mod, "e", "exec", "quickshell ipc call drawer toggle" },
-		{ mod .. " CTRL", "s", "exec", "quickshell ipc call settings toggle" },
-		{ "ALT CTRL", "l", "exec", "quickshell ipc call lock lock" },
-		{ mod .. " SHIFT", "c", "exec", "quickshell ipc call colorschemes toggle" },
-		{ mod .. " SHIFT", "n", "exec", "quickshell ipc call notifications toggle" },
-		{ mod .. " SHIFT", "o", "exec", "quickshell ipc call layout toggle" },
-		{ mod .. " SHIFT", "u", "exec", "quickshell ipc call dashboard toggle" },
-		{ mod, "w", "exec", "quickshell ipc call wallpapers toggle" },
-		{ mod .. " SHIFT", "b", "exec", "quickshell ipc call network toggle" },
-		{ mod .. " SHIFT", "p", "exec", "quickshell ipc call powermenu toggle" },
+-- Helper to register a binding.
+-- Accepts modifiers like "SUPER SHIFT" or "ALT CTRL".
+local function bind(modifiers, key, dispatcher, opts)
+	local prefix = modifiers:gsub("%s+", " + ")
+	local chord = prefix ~= "" and (prefix .. " + " .. key) or key
 
-		-- Media & Volume Keys (Allow when locked)
-		{ "", "XF86AudioPlay", "exec", "playerctl play-pause" },
-		{ "", "XF86AudioRaiseVolume", "exec", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+" },
-		{ "", "XF86AudioLowerVolume", "exec", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-" },
-		{ "", "XF86AudioMute", "exec", "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle" },
+	hl.bind(chord, dispatcher, opts or {})
+end
 
-		-- Window Focus
-		{ mod, "Tab", "hyprexpo:expo", "toggle" },
-		{ mod, "h", "movefocus", "l" },
-		{ mod, "Left", "movefocus", "l" },
-		{ mod, "l", "movefocus", "r" },
-		{ mod, "Right", "movefocus", "r" },
-		{ mod, "Up", "movefocus", "u" },
-		{ mod, "Down", "movefocus", "d" },
-		{ "ALT", "Tab", "cyclenext", "" },
+-- Helper for executable commands
+local function exec(modifiers, key, command, opts)
+	bind(modifiers, key, hl.dsp.exec_cmd(command), opts)
+end
 
-		--  Woomer (Screen Zoom)
-		{ mod, "z", "exec", "woomer" },
+-- Applications & Quickshell IPC
+exec(mod, "RETURN", "alacritty")
+exec(mod, "T", "quickshell ipc call applauncher toggle")
+exec(mod .. " SHIFT", "V", "quickshell ipc call clipboard toggle")
+exec(mod, "E", "quickshell ipc call drawer toggle")
+exec(mod .. " CTRL", "S", "quickshell ipc call settings toggle")
+exec("ALT CTRL", "L", "quickshell ipc call lock lock")
+exec(mod .. " SHIFT", "C", "quickshell ipc call colorschemes toggle")
+exec(mod .. " SHIFT", "N", "quickshell ipc call notifications toggle")
+exec(mod .. " SHIFT", "O", "quickshell ipc call layout toggle")
+exec(mod .. " SHIFT", "U", "quickshell ipc call dashboard toggle")
+exec(mod, "W", "quickshell ipc call wallpapers toggle")
+exec(mod .. " SHIFT", "B", "quickshell ipc call network toggle")
+exec(mod .. " SHIFT", "P", "quickshell ipc call powermenu toggle")
 
-		-- Layout Controls
-		{ mod .. " SHIFT", "l", "workspace-set-layout:toggle" },
-		{ mod .. " SHIFT", "d", "workspace-set-layout:monocle" },
-		{ mod .. " SHIFT", "s", "workspace-set-layout:scrolling" },
-		{ mod .. " SHIFT", "m", "workspace-set-layout:master" },
+-- Media & Volume Keys
+-- locked = true allows these bindings while an input inhibitor is active.
+exec("", "XF86AudioPlay", "playerctl play-pause", { locked = true })
 
-		-- Window Actions
-		{ mod, "q", "killactive", "" },
-		{ mod, "Space", "togglefloating", "" },
-		{ mod, "f", "fullscreen", "1" }, -- Maximize equivalent
-		{ mod .. " CTRL", "f", "fullscreen", "0" }, -- Fullscreen
+exec("", "XF86AudioRaiseVolume", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+", { locked = true })
 
-		-- Workspaces (1-9)
-		{ mod, "1", "workspace", "1" },
-		{ mod, "2", "workspace", "2" },
-		{ mod, "3", "workspace", "3" },
-		{ mod, "4", "workspace", "4" },
-		{ mod, "5", "workspace", "5" },
-		{ mod, "6", "workspace", "6" },
-		{ mod, "7", "workspace", "7" },
-		{ mod, "8", "workspace", "8" },
-		{ mod, "9", "workspace", "9" },
+exec("", "XF86AudioLowerVolume", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-", { locked = true })
 
-		-- Move window to workspaces (1-9)
-		{ mod .. " CTRL", "1", "movetoworkspace", "1" },
-		{ mod .. " CTRL", "2", "movetoworkspace", "2" },
-		{ mod .. " CTRL", "3", "movetoworkspace", "3" },
-		{ mod .. " CTRL", "4", "movetoworkspace", "4" },
-		{ mod .. " CTRL", "5", "movetoworkspace", "5" },
-		{ mod .. " CTRL", "6", "movetoworkspace", "6" },
-		{ mod .. " CTRL", "7", "movetoworkspace", "7" },
-		{ mod .. " CTRL", "8", "movetoworkspace", "8" },
-		{ mod .. " CTRL", "9", "movetoworkspace", "9" },
+exec("", "XF86AudioMute", "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle", { locked = true })
 
-		-- Workspace navigation
-		{ mod, "K", "workspace", "e-1" },
-		{ mod, "J", "workspace", "e+1" },
-	},
-	bindm = {
-		-- Mouse binds for moving/resizing windows
-		{ mod, "mouse:272", "movewindow", "" },
-		{ mod, "mouse:273", "resizewindow", "" },
-	},
-})
+-- Window Focus
+bind(mod, "TAB", hl.dsp.exec_cmd("hyprctl dispatch hyprexpo:expo toggle"))
+
+bind(mod, "H", hl.dsp.focus({ direction = "left" }))
+bind(mod, "LEFT", hl.dsp.focus({ direction = "left" }))
+
+bind(mod, "L", hl.dsp.focus({ direction = "right" }))
+bind(mod, "RIGHT", hl.dsp.focus({ direction = "right" }))
+
+bind(mod, "UP", hl.dsp.focus({ direction = "up" }))
+bind(mod, "DOWN", hl.dsp.focus({ direction = "down" }))
+
+bind("ALT", "TAB", hl.dsp.window.cycle_next())
+
+-- Woomer (Screen Zoom)
+exec(mod, "Z", "woomer")
+
+-- Layout Controls
+-- These are custom dispatcher commands, invoked through hyprctl.
+exec(mod .. " SHIFT", "L", "hyprctl dispatch workspace-set-layout toggle")
+exec(mod .. " SHIFT", "D", "hyprctl dispatch workspace-set-layout monocle")
+exec(mod .. " SHIFT", "S", "hyprctl dispatch workspace-set-layout scrolling")
+exec(mod .. " SHIFT", "M", "hyprctl dispatch workspace-set-layout master")
+
+-- Window Actions
+bind(mod, "Q", hl.dsp.window.close())
+
+bind(mod, "SPACE", hl.dsp.window.float({ action = "toggle" }))
+
+-- Original fullscreen 1 = maximize, fullscreen 0 = fullscreen.
+bind(
+	mod,
+	"F",
+	hl.dsp.window.fullscreen({
+		mode = "maximized",
+		action = "set",
+	})
+)
+
+bind(
+	mod .. " CTRL",
+	"F",
+	hl.dsp.window.fullscreen({
+		mode = "fullscreen",
+		action = "set",
+	})
+)
+
+-- Workspaces (1-9)
+for i = 1, 9 do
+	local key = tostring(i)
+
+	bind(mod, key, hl.dsp.focus({ workspace = i }))
+
+	-- Move window without following to destination workspace.
+	bind(
+		mod .. " CTRL",
+		key,
+		hl.dsp.window.move({
+			workspace = i,
+			follow = false,
+		})
+	)
+end
+
+-- Workspace navigation
+bind(mod, "K", hl.dsp.focus({ workspace = "e-1" }))
+bind(mod, "J", hl.dsp.focus({ workspace = "e+1" }))
+
+-- Mouse binds for moving/resizing windows
+bind(mod, "mouse:272", hl.dsp.window.drag(), { mouse = true })
+
+bind(mod, "mouse:273", hl.dsp.window.resize(), { mouse = true })
