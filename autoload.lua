@@ -25,7 +25,6 @@ local function importRelativeModule(module)
 	end
 end
 
-importRelativeModule("plugins.lua")
 importRelativeModule("runtime.lua")
 
 -- Get all files in modules dir
