@@ -25,6 +25,13 @@ hl.config({
 			special = true,
 			new_optimizations = true,
 			variant = "acrylic",
+			acrylic = {
+				aberration = 0.025,
+				bulb = 48,
+				clarity = 0.82,
+				refraction = 24,
+				tint = 0x14EEF5FF,
+			},
 		},
 
 		shadow = {
