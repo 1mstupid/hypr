@@ -1,80 +1,176 @@
-hl.config({
-	windowrulev2 = {
-		-- Global opacity / defaults (handled via general/decoration or fallback rules)
-		{ "opacity 0.9 override 0.9 override", "class:^(.*)$" },
+hl.window_rule({
+	name = "global-opacity",
+	match = { class = ".*" },
 
-		-- Picture-in-Picture
-		{ "float, title:^(Picture-in-Picture|Picture in picture)$" },
-		{ "size 25% 25%, title:^(Picture-in-Picture|Picture in picture)$" },
-		{ "move 10-10, title:^(Picture-in-Picture|Picture in picture)$" }, -- Or anchor positioning
-		{ "opacity 1.0 override 1.0 override, title:^(Picture-in-Picture|Picture in picture)$" },
-		{ "pin, title:^(Picture-in-Picture|Picture in picture)$" },
-		{ "nofocus, title:^(Picture-in-Picture|Picture in picture)$" },
+	opacity = "0.9 override 0.9 override",
+})
 
-		-- Yazi File Manager
-		{ "float, class:^(yazi\\.filemanager)$" },
-		{ "size 55% 55%, class:^(yazi\\.filemanager)$" },
-		{ "center, class:^(yazi\\.filemanager)$" },
+-- ── PICTURE-IN-PICTURE ──────────────────────────────────────────────────────
 
-		-- General Floating Apps
-		{
-			"float, class:^(dev\\.lemmy\\.swash|Mullvad Browser|Tor Browser|org\\.kde\\.kdeconnect\\.handler|org\\.kde\\.kdeconnect\\.daemon|com\\.rafaelmardojai\\.Blanket\\.qbittorrent-wr)$",
-		},
+-- · small, pinned in a corner, and never takes focus
+hl.window_rule({
+	name = "picture-in-picture",
+	match = { title = "^(Picture-in-Picture|Picture in picture)$" },
 
-		-- Custom Floating & Sized
-		{ "float, class:^(woomer)$" },
-		{ "center, class:^(woomer)$" },
-		{ "nofocus, class:^(woomer)$" },
-		{ "float, class:^(org\\.localsend\\.localsend_app)$" },
-		{ "size 40% 50%, class:^(org\\.localsend\\.localsend_app)$" },
+	float = true,
+	size = "25% 25%",
+	move = { 10, 10 },
+	opacity = "1.0 override 1.0 override",
+	pin = true,
+	no_focus = true,
+})
 
-		{ "float, class:^(com\\.obsproject\\.Studio)$" },
-		{ "size 55% 65%, class:^(com\\.obsproject\\.Studio)$" },
+-- ── FLOATING APPS ───────────────────────────────────────────────────────────
 
-		{ "float, class:^(scrcpy)$" },
-		{ "size 30% 90%, class:^(scrcpy)$" },
-		{ "opacity 1.0 override 1.0 override, class:^(scrcpy)$" },
-
-		{ "float, class:^(nwg-look)$" },
-		{ "size 40% 40%, class:^(nwg-look)$" },
-
-		{ "opacity 1.0 override 1.0 override, class:^(wlfreerdp)$" },
-
-		-- Opaque Floating
-		{ "float, class:^(com\\.interversehq\\.qView|mpv)$" },
-		{ "size 90% 60%, class:^(com\\.interversehq\\.qView|mpv)$" },
-		{ "opacity 1.0 override 1.0 override, class:^(com\\.interversehq\\.qView|mpv)$" },
-
-		-- Open Maximized
-		{
-			"maximize, class:^(org\\.qutebrowser\\.qutebrowser|equibop|chrome-web\\.whatsapp\\.com__-Default|org\\.telegram\\.desktop|dev\\.zed\\.Zed)$",
-		},
-
-		-- Browser Floating Popups (Bitwarden)
-		{ "float, title:^(.*Bitwarden.*)$" },
-		{ "size 26% 47%, title:^(.*Bitwarden.*)$" },
-		{ "center, title:^(.*Bitwarden.*)$" },
-
-		-- Firefox Library
-		{ "float, title:^(Library)$" },
-		{ "size 55% 60%, title:^(Library)$" },
-		{ "center, title:^(Library)$" },
-
-		-- Downloads Dialogs
-		{ "float, title:^(.*(Downloads|Opening).*)$" },
-		{ "size 55% 60%, title:^(.*(Downloads|Opening).*)$" },
-		{ "center, title:^(.*(Downloads|Opening).*)$" },
-
-		-- Steam Notification Toasts
-		{ "float, class:^(steam)$, title:^(notificationtoasts_\\d+_desktop)$" },
-		{ "nofocus, class:^(steam)$, title:^(notificationtoasts_\\d+_desktop)$" },
+hl.window_rule({
+	name = "floating-apps",
+	match = {
+		class = "^(dev\\.lemmy\\.swash|Mullvad Browser|Tor Browser|org\\.kde\\.kdeconnect\\.handler|org\\.kde\\.kdeconnect\\.daemon|com\\.rafaelmardojai\\.Blanket\\.qbittorrent-wr)$",
 	},
-	layerrule = {
-		-- Add blur to quickshell layers/surfaces
-		{ "blur, quickshell*" },
-		{ "ignorezero, quickshell*" },
-		-- Skip open/close animations for quickshell layers
-		{ "noanim, quickshell*" },
-		{ "noanim, qs-*" },
+
+	float = true,
+})
+
+hl.window_rule({
+	name = "yazi-filemanager",
+	match = { class = "^(yazi\\.filemanager)$" },
+
+	float = true,
+	size = "55% 55%",
+	center = true,
+})
+
+hl.window_rule({
+	name = "woomer",
+	match = { class = "^(woomer)$" },
+
+	float = true,
+	center = true,
+	no_focus = true,
+})
+
+-- ── SIZED FLOATERS ──────────────────────────────────────────────────────────
+
+hl.window_rule({
+	name = "localsend",
+	match = { class = "^(org\\.localsend\\.localsend_app)$" },
+
+	float = true,
+	size = "40% 50%",
+})
+
+hl.window_rule({
+	name = "obs-studio",
+	match = { class = "^(com\\.obsproject\\.Studio)$" },
+
+	float = true,
+	size = "55% 65%",
+})
+
+hl.window_rule({
+	name = "scrcpy",
+	match = { class = "^(scrcpy)$" },
+
+	float = true,
+	size = "30% 90%",
+	opacity = "1.0 override 1.0 override",
+})
+
+hl.window_rule({
+	name = "nwg-look",
+	match = { class = "^(nwg-look)$" },
+
+	float = true,
+	size = "40% 40%",
+})
+
+hl.window_rule({
+	name = "wlfreerdp-opaque",
+	match = { class = "^(wlfreerdp)$" },
+
+	opacity = "1.0 override 1.0 override",
+})
+
+-- ── OPAQUE FLOATERS ─────────────────────────────────────────────────────────
+
+-- · media viewers float at 90% by 60% and stay fully opaque
+hl.window_rule({
+	name = "opaque-media-floaters",
+	match = { class = "^(com\\.interversehq\\.qView|mpv)$" },
+
+	float = true,
+	size = "90% 60%",
+	opacity = "1.0 override 1.0 override",
+})
+
+-- ── MAXIMIZED ───────────────────────────────────────────────────────────────
+
+hl.window_rule({
+	name = "open-maximized",
+	match = {
+		class = "^(org\\.qutebrowser\\.qutebrowser|equibop|chrome-web\\.whatsapp\\.com__-Default|org\\.telegram\\.desktop|dev\\.zed\\.Zed)$",
 	},
+
+	maximize = true,
+})
+
+-- ── BROWSER & DIALOG POPUPS ─────────────────────────────────────────────────
+
+-- · Bitwarden's popup
+hl.window_rule({
+	name = "bitwarden-popup",
+	match = { title = "^(.*Bitwarden.*)$" },
+
+	float = true,
+	size = "26% 47%",
+	center = true,
+})
+
+-- · Firefox's Library window
+hl.window_rule({
+	name = "firefox-library",
+	match = { title = "^(Library)$" },
+
+	float = true,
+	size = "55% 60%",
+	center = true,
+})
+
+-- · download and opening dialogs
+hl.window_rule({
+	name = "download-dialogs",
+	match = { title = "^(.*(Downloads|Opening).*)$" },
+
+	float = true,
+	size = "55% 60%",
+	center = true,
+})
+
+-- · Steam's notification toasts stay out of focus
+hl.window_rule({
+	name = "steam-toasts",
+	match = {
+		class = "^(steam)$",
+		title = "^(notificationtoasts_\\d+_desktop)$",
+	},
+
+	float = true,
+	no_focus = true,
+})
+
+-- ── LAYERS ──────────────────────────────────────────────────────────────────
+
+-- · every shell surface: blurred behind, with no open or close animation.
+--   The shell runs its own morph, so Hyprland's slide would stack on top.
+--
+-- ignore_alpha keeps the blur to the painted card. The full-screen panels
+-- (control drawer, power menu, layout editor, history) would otherwise blur
+-- the whole wallpaper. 0.12 is the value Impasto uses.
+hl.layer_rule({
+	name = "quickshell-layers",
+	match = { namespace = "^(quickshell.*|qs-.*)$" },
+
+	blur = true,
+	ignore_alpha = 0.12,
+	no_anim = true,
 })
