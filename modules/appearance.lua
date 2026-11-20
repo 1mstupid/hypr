@@ -24,7 +24,7 @@ hl.config({
 			contrast = 1.0,
 			special = true,
 			new_optimizations = true,
-			variant = "heat_shimmer",
+			variant = "acrylic",
 		},
 
 		shadow = {
