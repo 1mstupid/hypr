@@ -1,26 +1,11 @@
-local apps = {
-	{ name = "quickshell", cmd = "quickshell &" },
-	{ name = "awww-daemon", cmd = "awww-daemon &" },
-	{ name = "swayidle", cmd = "swayidle timeout 600 'quickshell ipc call lock lock' before-sleep 'true' &" },
-	{ name = "wl-paste", cmd = "wl-paste --type text --watch cliphist store &" },
-}
+local function startApplications()
+	hl.print("Starting background applications...")
 
-local function restartApplications()
-	hl.print("Restarting background applications...")
-
-	-- Kill existing instances safely using pattern matching
-	for _, app in ipairs(apps) do
-		hl.exec_cmd("pkill -f " .. app.name)
-	end
-
-	-- Give the compositor a brief moment to release Wayland sockets
-	hl.exec_cmd("sleep 0.5")
-
-	-- Launch each application individually
-	for _, app in ipairs(apps) do
-		hl.exec_cmd(app.cmd)
-	end
+	hl.exec_cmd("quickshell -p ~/Projects/quickshell/")
+	hl.exec_cmd("awww-daemon &")
+	hl.exec_cmd("swayidle timeout 600 'quickshell ipc call lock lock' before-sleep 'true' &")
+	hl.exec_cmd("wl-paste --type text --watch cliphist store &")
 end
 
-hl.on("hyprland.start", restartApplications)
-hl.on("config.reloaded", restartApplications)
+hl.on("hyprland.start", startApplications)
+hl.on("config.reloaded", startApplications)
