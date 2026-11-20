@@ -177,7 +177,14 @@ end
 bind(mod, "K", hl.dsp.focus({ workspace = "e-1" }))
 bind(mod, "J", hl.dsp.focus({ workspace = "e+1" }))
 
+-- Config reload / Restart Hyprland
+exec(mod .. " SHIFT", "R", "hyprctl reload")
+
 -- Mouse binds for moving/resizing windows
 bind(mod, "mouse:272", hl.dsp.window.drag(), { mouse = true })
 
 bind(mod, "mouse:273", hl.dsp.window.resize(), { mouse = true })
+
+-- Window movement / workspace cycling with super + scroll
+bind(mod, "mouse_up", hl.dsp.focus({ workspace = "e-1" }), { mouse = true })
+bind(mod, "mouse_down", hl.dsp.focus({ workspace = "e+1" }), { mouse = true })
