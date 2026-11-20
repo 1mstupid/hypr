@@ -2,7 +2,7 @@
 local appList = {
 	"quickshell -p ~/Projects/quickshell",
 	"awww-daemon",
-	"swayidle timeout 600 'quickshell ipc call lock lock' before-sleep 'true'",
+	"swayidle timeout 600 'quickshell ipc -p ~/Projects/quickshell call lock lock' before-sleep 'true'",
 	"wl-paste --type text --watch cliphist store",
 }
 
