@@ -80,6 +80,7 @@ local animations = {
 		leaf = "workspaces",
 		speed = 5,
 		bezier = "standard",
+		style = "slidefadevert 15%",
 	},
 	{
 		leaf = "specialWorkspace",
@@ -87,7 +88,6 @@ local animations = {
 		bezier = "specialWorkSwitch",
 		style = "slidefadevert 15%",
 	},
-
 	-- Border & Fade
 	{
 		leaf = "fade",
