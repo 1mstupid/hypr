@@ -6,12 +6,18 @@ local appList = {
 	"wl-paste --type text --watch cliphist store",
 }
 
--- Start applications when Hyprland starts
-hl.on("hyprland.start", function()
+-- Start applications
+local function startApplications()
 	for _, command in ipairs(appList) do
 		hl.exec_cmd(command)
 	end
-end)
+end
+
+-- Start applications when Hyprland starts
+hl.on("hyprland.start", startApplications)
+
+-- Restart applications when configuration reloads
+hl.on("hyprland.reload", startApplications)
 
 -- XWayland configuration
 hl.config({
