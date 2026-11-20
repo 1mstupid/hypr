@@ -8,6 +8,13 @@ local appList = {
 
 -- Start applications
 local function startApplications()
+	-- Stop existing instances to avoid duplicates
+	hl.exec_cmd("pkill -x quickshell")
+	hl.exec_cmd("pkill -x awww-daemon")
+	hl.exec_cmd("pkill -x swayidle")
+	hl.exec_cmd("pkill -x wl-paste")
+
+	-- Start applications
 	for _, command in ipairs(appList) do
 		hl.exec_cmd(command)
 	end
@@ -16,8 +23,8 @@ end
 -- Start applications when Hyprland starts
 hl.on("hyprland.start", startApplications)
 
--- Restart applications when configuration reloads
-hl.on("hyprland.reload", startApplications)
+-- Restart applications when config reloads
+hl.on("config.reloaded", startApplications)
 
 -- XWayland configuration
 hl.config({
