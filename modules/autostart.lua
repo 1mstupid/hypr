@@ -1,6 +1,5 @@
 -- Global applications
 local appList = {
-	"steam -silent",
 	"quickshell",
 	"awww-daemon",
 	"swayidle timeout 600 'quickshell ipc call lock lock' before-sleep 'true'",
