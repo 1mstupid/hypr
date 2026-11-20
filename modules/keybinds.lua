@@ -17,18 +17,18 @@ end
 
 -- Applications & Quickshell IPC
 exec(mod, "RETURN", "alacritty")
-exec(mod, "T", "quickshell ipc call applauncher toggle")
-exec(mod .. " SHIFT", "V", "quickshell ipc call clipboard toggle")
-exec(mod, "E", "quickshell ipc call drawer toggle")
-exec(mod .. " CTRL", "S", "quickshell ipc call settings toggle")
-exec("ALT CTRL", "L", "quickshell ipc call lock lock")
-exec(mod .. " SHIFT", "C", "quickshell ipc call colorschemes toggle")
-exec(mod .. " SHIFT", "N", "quickshell ipc call notifications toggle")
-exec(mod .. " SHIFT", "O", "quickshell ipc call layout toggle")
-exec(mod .. " SHIFT", "U", "quickshell ipc call dashboard toggle")
-exec(mod, "W", "quickshell ipc call wallpapers toggle")
-exec(mod .. " SHIFT", "B", "quickshell ipc call network toggle")
-exec(mod .. " SHIFT", "P", "quickshell ipc call powermenu toggle")
+exec(mod, "T", "quickshell ipc -p ~/Projects/quickshell call applauncher toggle")
+exec(mod .. " SHIFT", "V", "quickshell ipc -p ~/Projects/quickshell call clipboard toggle")
+exec(mod, "E", "quickshell ipc -p ~/Projects/quickshell call drawer toggle")
+exec(mod .. " CTRL", "S", "quickshell ipc -p ~/Projects/quickshell call settings toggle")
+exec("ALT CTRL", "L", "quickshell ipc -p ~/Projects/quickshell call lock lock")
+exec(mod .. " SHIFT", "C", "quickshell ipc -p ~/Projects/quickshell call colorschemes toggle")
+exec(mod .. " SHIFT", "N", "quickshell ipc -p ~/Projects/quickshell call notifications toggle")
+exec(mod .. " SHIFT", "O", "quickshell ipc -p ~/Projects/quickshell call layout toggle")
+exec(mod .. " SHIFT", "U", "quickshell ipc -p ~/Projects/quickshell call dashboard toggle")
+exec(mod, "W", "quickshell ipc -p ~/Projects/quickshell call wallpapers toggle")
+exec(mod .. " SHIFT", "B", "quickshell ipc -p ~/Projects/quickshell call network toggle")
+exec(mod .. " SHIFT", "P", "quickshell ipc -p ~/Projects/quickshell call powermenu toggle")
 
 -- Media & Volume Keys
 -- locked = true allows these bindings while an input inhibitor is active.
