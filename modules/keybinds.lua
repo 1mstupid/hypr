@@ -41,7 +41,9 @@ exec("", "XF86AudioLowerVolume", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-", 
 exec("", "XF86AudioMute", "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle", { locked = true })
 
 -- Window Focus
-bind(mod, "TAB", hl.dsp.exec_cmd("hyprctl dispatch hyprexpo:expo toggle"))
+hl.bind("SUPER + G", function()
+	hl.plugin.hyprexpo.expo("toggle")
+end)
 
 bind(mod, "H", hl.dsp.focus({ direction = "left" }))
 bind(mod, "LEFT", hl.dsp.focus({ direction = "left" }))
