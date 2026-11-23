@@ -26,10 +26,10 @@ hl.config({
 			new_optimizations = true,
 			variant = "acrylic",
 			acrylic = {
-				aberration = 0.485,
+				aberration = 0.250,
 				bulb = 120,
 				clarity = 0.20,
-				refraction = 55,
+				refraction = 48,
 				tint = 0x14EEF5FF,
 			},
 		},
