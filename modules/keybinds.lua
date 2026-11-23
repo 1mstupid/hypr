@@ -142,28 +142,6 @@ bind(mod, "Q", hl.dsp.window.close())
 
 bind(mod, "SPACE", hl.dsp.window.float({ action = "toggle" }))
 
--- ── Scratchpad ──
-
--- Toggle scratchpad visibility (Super + Shift + Space)
-bind(
-	mod .. " SHIFT",
-	"SPACE",
-	hl.dsp.dispatch({
-		dispatcher = "togglespecialworkspace",
-		args = "scratchpad",
-	})
-)
-
--- Move focused window to scratchpad (Super + Shift + Backspace)
-bind(
-	mod .. " SHIFT",
-	"BACKSPACE",
-	hl.dsp.dispatch({
-		dispatcher = "movetoworkspace",
-		args = "special:scratchpad",
-	})
-)
-
 -- Restore focused window to current workspace (Super + Ctrl + Backspace)
 bind(mod .. " CTRL", "BACKSPACE", function()
 	local workspace = hl.get_active_workspace()
@@ -197,17 +175,15 @@ bind(
 for i = 1, 9 do
 	local key = tostring(i)
 
-	bind(mod, key, hl.dsp.focus({ workspace = i }))
+	-- Switch workspace
+	bind(mod, key, function()
+		hl.dispatch('hl.dsp.focus({ workspace = "' .. key .. '" })')
+	end)
 
-	-- Move window without following to destination workspace.
-	bind(
-		mod .. " CTRL",
-		key,
-		hl.dsp.window.move({
-			workspace = i,
-			follow = false,
-		})
-	)
+	-- Move window without following
+	bind(mod .. " CTRL", key, function()
+		hl.dispatch('hl.dsp.window.move({ workspace = "' .. key .. '", follow = false })')
+	end)
 end
 
 -- Workspace navigation
