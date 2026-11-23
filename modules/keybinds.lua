@@ -143,17 +143,35 @@ bind(mod, "Q", hl.dsp.window.close())
 bind(mod, "SPACE", hl.dsp.window.float({ action = "toggle" }))
 
 -- ── Scratchpad ──
-bind("SUPER SHIFT", "SPACE", function()
-	hyprctl("dispatch", "togglespecialworkspace", "scratchpad")
-end)
 
-bind("SUPER SHIFT", "BACKSPACE", function()
-	hyprctl("dispatch", "movetoworkspace", "special:scratchpad")
-end)
+-- Toggle scratchpad visibility (Super + Shift + Space)
+bind(
+	mod .. " SHIFT",
+	"SPACE",
+	hl.dsp.dispatch({
+		dispatcher = "togglespecialworkspace",
+		args = "scratchpad",
+	})
+)
 
-bind("SUPER CTRL", "BACKSPACE", function()
-	local workspace = hyprctl("activeworkspace")
-	hyprctl("dispatch", "movetoworkspace", workspace.id)
+-- Move focused window to scratchpad (Super + Shift + Backspace)
+bind(
+	mod .. " SHIFT",
+	"BACKSPACE",
+	hl.dsp.dispatch({
+		dispatcher = "movetoworkspace",
+		args = "special:scratchpad",
+	})
+)
+
+-- Restore focused window to current workspace (Super + Ctrl + Backspace)
+bind(mod .. " CTRL", "BACKSPACE", function()
+	local workspace = hl.get_active_workspace()
+	if not workspace then
+		return
+	end
+
+	hl.dispatch("movetoworkspace", tostring(workspace.id))
 end)
 
 -- Original fullscreen 1 = maximize, fullscreen 0 = fullscreen.
