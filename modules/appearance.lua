@@ -27,8 +27,8 @@ hl.config({
 			variant = "acrylic",
 			acrylic = {
 				aberration = 0.045,
-				bulb = 48,
-				clarity = 0.82,
+				bulb = 100,
+				clarity = 0.35,
 				refraction = 34,
 				tint = 0x14EEF5FF,
 			},
