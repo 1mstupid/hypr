@@ -142,13 +142,27 @@ bind(mod, "Q", hl.dsp.window.close())
 
 bind(mod, "SPACE", hl.dsp.window.float({ action = "toggle" }))
 
+-- ── Scratchpad ──
+bind("SUPER SHIFT", "SPACE", function()
+	hyprctl("dispatch", "togglespecialworkspace", "scratchpad")
+end)
+
+bind("SUPER SHIFT", "BACKSPACE", function()
+	hyprctl("dispatch", "movetoworkspace", "special:scratchpad")
+end)
+
+bind("SUPER CTRL", "BACKSPACE", function()
+	local workspace = hyprctl("activeworkspace")
+	hyprctl("dispatch", "movetoworkspace", workspace.id)
+end)
+
 -- Original fullscreen 1 = maximize, fullscreen 0 = fullscreen.
 bind(
 	mod,
 	"F",
 	hl.dsp.window.fullscreen({
 		mode = "maximized",
-		action = "set",
+		action = "toggle",
 	})
 )
 
@@ -157,7 +171,7 @@ bind(
 	"F",
 	hl.dsp.window.fullscreen({
 		mode = "fullscreen",
-		action = "set",
+		action = "toggle",
 	})
 )
 
