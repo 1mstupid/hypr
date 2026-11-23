@@ -51,7 +51,10 @@ bind(mod, "LEFT", hl.dsp.focus({ direction = "left" }))
 bind(mod, "L", hl.dsp.focus({ direction = "right" }))
 bind(mod, "RIGHT", hl.dsp.focus({ direction = "right" }))
 
+bind(mod, "K", hl.dsp.focus({ direction = "up" }))
 bind(mod, "UP", hl.dsp.focus({ direction = "up" }))
+
+bind(mod, "J", hl.dsp.focus({ direction = "down" }))
 bind(mod, "DOWN", hl.dsp.focus({ direction = "down" }))
 
 bind("ALT", "TAB", hl.dsp.window.cycle_next())
@@ -176,8 +179,8 @@ for i = 1, 9 do
 end
 
 -- Workspace navigation
-bind(mod, "K", hl.dsp.focus({ workspace = "e-1" }))
-bind(mod, "J", hl.dsp.focus({ workspace = "e+1" }))
+bind(mod, "P", hl.dsp.focus({ workspace = "e-1" }))
+bind(mod, "N", hl.dsp.focus({ workspace = "e+1" }))
 
 -- Config reload / Restart Hyprland
 exec(mod .. " SHIFT", "R", "hyprctl reload")
