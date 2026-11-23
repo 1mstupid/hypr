@@ -171,7 +171,6 @@ hl.layer_rule({
 	match = { namespace = "^(quickshell.*|qs-.*)$" },
 
 	blur = true,
-	ignore_alpha = 0.12,
 	no_dim = true,
 	no_shadow = false,
 	opaque = true,
