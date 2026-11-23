@@ -176,14 +176,17 @@ for i = 1, 9 do
 	local key = tostring(i)
 
 	-- Switch workspace
-	bind(mod, key, function()
-		hl.dispatch('hl.dsp.focus({ workspace = "' .. key .. '" })')
-	end)
+	bind(mod, key, hl.dsp.focus({ workspace = i }))
 
 	-- Move window without following
-	bind(mod .. " CTRL", key, function()
-		hl.dispatch('hl.dsp.window.move({ workspace = "' .. key .. '", follow = false })')
-	end)
+	bind(
+		mod .. " CTRL",
+		key,
+		hl.dsp.window.move({
+			workspace = i,
+			follow = false,
+		})
+	)
 end
 
 -- Workspace navigation
@@ -191,8 +194,7 @@ bind(mod, "P", hl.dsp.focus({ workspace = "e-1" }))
 bind(mod, "N", hl.dsp.focus({ workspace = "e+1" }))
 
 -- Config reload / Restart Hyprland
-exec(mod .. " SHIFT", "R", "hyprctl reload")
-
+bind(mod .. " SHIFT", "R", hl.dsp.reload_config())
 -- Mouse binds for moving/resizing windows
 bind(mod, "mouse:272", hl.dsp.window.drag(), { mouse = true })
 
