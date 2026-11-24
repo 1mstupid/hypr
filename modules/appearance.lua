@@ -25,15 +25,15 @@ hl.config({
 			contrast = 1.0,
 			special = true,
 			new_optimizations = true,
-			-- variant = "acrylic",
-			--
-			-- acrylic = {
-			-- 	aberration = 0.025,
-			-- 	bulb = 48,
-			-- 	clarity = 0.65,
-			-- 	refraction = 12,
-			-- 	tint = 0x10EEF5FF,
-			-- },
+			variant = "acrylic",
+
+			acrylic = {
+				aberration = 0.025,
+				bulb = 48,
+				clarity = 0.65,
+				refraction = 12,
+				tint = 0x10EEF5FF,
+			},
 		},
 
 		shadow = {
