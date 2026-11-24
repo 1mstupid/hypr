@@ -31,7 +31,7 @@ hl.config({
 				aberration = 0.025,
 				bulb = 48,
 				clarity = 0.65,
-				refraction = 12,
+				refraction = 13,
 				tint = 0x10EEF5FF,
 			},
 		},
