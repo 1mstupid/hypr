@@ -1,3 +1,4 @@
+-- Global applications
 local appList = {
 	"quickshell -p ~/Projects/quickshell",
 	"awww-daemon",
@@ -7,23 +8,11 @@ local appList = {
 
 -- Start applications
 local function startApplications()
-	-- Stop existing instances by matching the full command pattern
-	for _, command in ipairs(appList) do
-		-- Extract the main binary name (first word) to kill safely
-		local binary = command:match("^%S+")
-		if binary then
-			hl.exec_cmd("pkill -9 -x " + binary + " 2>/dev/null || true")
-		end
-	end
-
-	-- Alternative: If pkill -x fails, target specific base names directly
-	hl.exec_cmd("pkill quickshell")
-	hl.exec_cmd("pkill awww-daemon")
-	hl.exec_cmd("pkill swayidle")
-	hl.exec_cmd("pkill wl-paste")
-
-	-- Small delay to let OS release sockets/resources
-	hl.exec_cmd("sleep 0.1")
+	-- Stop existing instances to avoid duplicates
+	hl.exec_cmd("pkill -x quickshell")
+	hl.exec_cmd("pkill -x awww-daemon")
+	hl.exec_cmd("pkill -x swayidle")
+	hl.exec_cmd("pkill -x wl-paste")
 
 	-- Start applications
 	for _, command in ipairs(appList) do
