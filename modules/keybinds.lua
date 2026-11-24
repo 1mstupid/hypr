@@ -73,7 +73,7 @@ local layouts = {
 }
 
 local function get_active_workspace()
-	return hl.dsp.get_active_special_workspace() or hl.dsp.get_active_workspace()
+	return hl.get_active_special_workspace() or hl.get_active_workspace()
 end
 
 -- Build the selector Hyprland expects for a workspace rule.
@@ -194,7 +194,7 @@ bind(mod, "P", hl.dsp.focus({ workspace = "e-1" }))
 bind(mod, "N", hl.dsp.focus({ workspace = "e+1" }))
 
 -- Config reload / Restart Hyprland
-bind(mod .. " SHIFT", "R", "exec hypr-reload")
+exec(mod .. " SHIFT", "R", "hypr-reload")
 
 -- Mouse binds for moving/resizing windows
 bind(mod, "mouse:272", hl.dsp.window.drag(), { mouse = true })
