@@ -194,7 +194,8 @@ bind(mod, "P", hl.dsp.focus({ workspace = "e-1" }))
 bind(mod, "N", hl.dsp.focus({ workspace = "e+1" }))
 
 -- Config reload / Restart Hyprland
-bind(mod .. " SHIFT", "R", hl.dsp.reload_config())
+bind(mod .. " SHIFT", "R", "exec hypr-reload")
+
 -- Mouse binds for moving/resizing windows
 bind(mod, "mouse:272", hl.dsp.window.drag(), { mouse = true })
 
