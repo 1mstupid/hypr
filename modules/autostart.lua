@@ -17,10 +17,10 @@ local function startApplications()
 	end
 
 	-- Alternative: If pkill -x fails, target specific base names directly
-	hl.exec_cmd("pkill -9 -f quickshell")
-	hl.exec_cmd("pkill -9 -x awww-daemon")
-	hl.exec_cmd("pkill -9 -x swayidle")
-	hl.exec_cmd("pkill -9 -x wl-paste")
+	hl.exec_cmd("pkill quickshell")
+	hl.exec_cmd("pkill awww-daemon")
+	hl.exec_cmd("pkill swayidle")
+	hl.exec_cmd("pkill wl-paste")
 
 	-- Small delay to let OS release sockets/resources
 	hl.exec_cmd("sleep 0.1")
