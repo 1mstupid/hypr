@@ -173,3 +173,10 @@ hl.layer_rule({
 	blur = false,
 	no_anim = true,
 })
+hl.layer_rule({
+	name = "no-anim-for-selection",
+	match = {
+		namespace = "selection",
+	},
+	no_anim = true,
+})
