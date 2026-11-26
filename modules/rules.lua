@@ -173,13 +173,7 @@ hl.layer_rule({
 	blur = false,
 	no_anim = true,
 })
-hl.layer_rule({
-	name = "qs-bar",
-	match = { namespace = "^(quickshell.*|qs-.*)$" },
 
-	blur = true,
-	no_anim = true,
-})
 hl.layer_rule({
 	name = "no-anim-for-selection",
 	match = {
