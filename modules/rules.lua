@@ -181,6 +181,15 @@ hl.layer_rule({
 	no_anim = true,
 	ignore_alpha = 0.05,
 })
+
+hl.layer_rule({
+	name = "qs-notify",
+	match = { namespace = "qs-notify" },
+
+	blur = true,
+	no_anim = true,
+	ignore_alpha = 0.05,
+})
 hl.layer_rule({
 	name = "no-anim-for-selection",
 	match = {
