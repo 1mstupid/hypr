@@ -174,8 +174,8 @@ hl.layer_rule({
 	no_anim = true,
 })
 hl.layer_rule({
-	name = "qs-bar",
-	match = { namespace = "qs-bar" },
+	name = "qs-strip",
+	match = { namespace = "qs-strip" },
 
 	blur = true,
 	no_anim = true,
