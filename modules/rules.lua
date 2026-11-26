@@ -174,7 +174,7 @@ hl.layer_rule({
 	no_anim = true,
 })
 hl.layer_rule({
-	name = "no-anim-for-selection",
+	name = "qs_screenshot",
 	match = {
 		namespace = "selection",
 	},
