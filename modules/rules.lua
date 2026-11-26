@@ -179,6 +179,7 @@ hl.layer_rule({
 
 	blur = true,
 	no_anim = true,
+	ignore_alpha = 0.05,
 })
 hl.layer_rule({
 	name = "no-anim-for-selection",
