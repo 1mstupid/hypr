@@ -173,7 +173,13 @@ hl.layer_rule({
 	blur = false,
 	no_anim = true,
 })
+hl.layer_rule({
+	name = "qs-bar",
+	match = { namespace = "qs-bar" },
 
+	blur = true,
+	no_anim = true,
+})
 hl.layer_rule({
 	name = "no-anim-for-selection",
 	match = {
