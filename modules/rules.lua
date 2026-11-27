@@ -4,7 +4,13 @@ hl.window_rule({
 
 	opacity = "0.9 override 0.9 override",
 })
-
+hl.window_rule({
+	name = "global-opacity-exceptions",
+	match = {
+		class = "^(org.gnome.Nautilus|helium|sioyek|org.pulseaudio.pavucontrol)$",
+	},
+	opacity = "1.0",
+})
 -- ── PICTURE-IN-PICTURE ──────────────────────────────────────────────────────
 
 -- · small, pinned in a corner, and never takes focus
