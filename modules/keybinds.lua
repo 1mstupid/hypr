@@ -37,7 +37,12 @@ exec(mod .. " SHIFT", "T", "neru scroll")
 
 -- Media & Volume Keys
 -- locked = true allows these bindings while an input inhibitor is active.
-exec("", "XF86AudioPlay", "playerctl play-pause", { locked = true })
+-- Media Keys (prioritize mpd, fall back to browser/mpv)
+exec("", "XF86AudioPlay", "playerctl --player=mpd,%any play-pause", { locked = true })
+
+exec("", "XF86AudioNext", "playerctl --player=mpd,%any next", { locked = true })
+
+exec("", "XF86AudioPrev", "playerctl --player=mpd,%any previous", { locked = true })
 
 exec("", "XF86AudioRaiseVolume", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+", { locked = true })
 
