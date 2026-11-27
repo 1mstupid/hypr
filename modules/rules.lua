@@ -7,7 +7,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "global-opacity-exceptions",
 	match = {
-		class = "^(org.gnome.Nautilus|helium|sioyek|org.pulseaudio.pavucontrol)$",
+		class = "^(org.gnome.Nautilus|helium|zapfast|GalaxyBudsClient|sioyek|org.pulseaudio.pavucontrol)$",
 	},
 	opacity = "1.0",
 })
