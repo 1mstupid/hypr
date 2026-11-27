@@ -30,6 +30,11 @@ exec(mod, "W", "quickshell ipc -p ~/Projects/quickshell call wallpapers toggle")
 exec(mod .. " SHIFT", "B", "quickshell ipc -p ~/Projects/quickshell call network toggle")
 exec(mod .. " SHIFT", "P", "quickshell ipc -p ~/Projects/quickshell call powermenu toggle")
 
+-- Neru
+exec(mod .. " SHIFT", "H", "neru hints")
+exec(mod .. " SHIFT", "G", "neru grid")
+exec(mod .. " SHIFT", "T", "neru scroll")
+
 -- Media & Volume Keys
 -- locked = true allows these bindings while an input inhibitor is active.
 exec("", "XF86AudioPlay", "playerctl play-pause", { locked = true })
@@ -39,11 +44,6 @@ exec("", "XF86AudioRaiseVolume", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+", 
 exec("", "XF86AudioLowerVolume", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-", { locked = true })
 
 exec("", "XF86AudioMute", "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle", { locked = true })
-
--- Window Focus
-hl.bind("SUPER + G", function()
-	hl.plugin.hyprexpo.expo("toggle")
-end)
 
 bind(mod, "H", hl.dsp.focus({ direction = "left" }))
 bind(mod, "LEFT", hl.dsp.focus({ direction = "left" }))
