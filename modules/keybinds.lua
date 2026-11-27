@@ -38,6 +38,10 @@ exec(mod .. " SHIFT", "T", "neru scroll")
 -- Media & Volume Keys
 -- locked = true allows these bindings while an input inhibitor is active.
 -- Media Keys (prioritize mpd, fall back to browser/mpv)
+exec("", "XF86MonBrightnessUp", "ddcutil --display 1 setvcp 10 + 10", { locked = true })
+
+exec("", "XF86MonBrightnessDown", "ddcutil --display 1 setvcp 10 - 10", { locked = true })
+
 exec("", "XF86AudioPlay", "playerctl --player=mpd,%any play-pause", { locked = true })
 
 exec("", "XF86AudioNext", "playerctl --player=mpd,%any next", { locked = true })
