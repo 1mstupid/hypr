@@ -17,7 +17,7 @@ end
 
 -- Applications & Quickshell IPC
 exec(mod, "RETURN", "alacritty")
-exec(mod, "T", "quickshell ipc -p ~/Projects/quickshell call applauncher toggle")
+exec(mod, "D", "quickshell ipc -p ~/Projects/quickshell call applauncher toggle")
 exec(mod .. " SHIFT", "V", "quickshell ipc -p ~/Projects/quickshell call clipboard toggle")
 exec(mod, "E", "quickshell ipc -p ~/Projects/quickshell call drawer toggle")
 exec(mod .. " CTRL", "S", "quickshell ipc -p ~/Projects/quickshell call settings toggle")
