@@ -70,23 +70,7 @@ exec(mod, "Z", "woomer")
 -- Using SUPER + CTRL + [H, J, K, L] or arrow keys for resizing active windows.
 -- Automatically handles floating vs tiled constraints via dispatchers.
 
-local resize_amount = 30
-
--- Resize Left
-bind(mod .. " CTRL", "H", hl.dsp.window.resize({ x = -resize_amount, y = 0 }))
-bind(mod .. " CTRL", "LEFT", hl.dsp.window.resize({ x = -resize_amount, y = 0 }))
-
--- Resize Right
-bind(mod .. " CTRL", "L", hl.dsp.window.resize({ x = resize_amount, y = 0 }))
-bind(mod .. " CTRL", "RIGHT", hl.dsp.window.resize({ x = resize_amount, y = 0 }))
-
--- Resize Up
-bind(mod .. " CTRL", "K", hl.dsp.window.resize({ x = 0, y = -resize_amount }))
-bind(mod .. " CTRL", "UP", hl.dsp.window.resize({ x = 0, y = -resize_amount }))
-
--- Resize Down
-bind(mod .. " CTRL", "J", hl.dsp.window.resize({ x = 0, y = resize_amount }))
-bind(mod .. " CTRL", "DOWN", hl.dsp.window.resize({ x = 0, y = resize_amount }))
+bind(mod, "CTRL", "Backslash", hl.dsp.window.resize({ x = 640, y = 480, "exact" }))
 
 -- Layout Controls
 -- Switch layouts independently for each workspace.
