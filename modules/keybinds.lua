@@ -215,4 +215,4 @@ bind(mod, "mouse_up", hl.dsp.focus({ workspace = "e-1" }), { mouse = true })
 bind(mod, "mouse_down", hl.dsp.focus({ workspace = "e+1" }), { mouse = true })
 
 -- Resize active window to a moderate 640x480 (Super + Shift + \)
-bind(mod .. " SHIFT", "\\", hl.dsp.window.resize({ x = 640, y = 480 }))
+bind(mod .. " SHIFT", "Backslash", hl.dsp.window.resize({ x = 640, y = 480 }))
