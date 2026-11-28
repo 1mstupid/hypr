@@ -37,23 +37,16 @@ exec(mod .. " SHIFT", "T", "neru scroll")
 
 -- Media & Volume Keys
 -- locked = true allows these bindings while an input inhibitor is active.
--- Media Keys (prioritize mpd, fall back to browser/mpv)
 exec("", "XF86MonBrightnessUp", "ddcutil --display 1 setvcp 10 + 10", { locked = true })
-
 exec("", "XF86MonBrightnessDown", "ddcutil --display 1 setvcp 10 - 10", { locked = true })
-
 exec("", "XF86AudioPlay", "playerctl --player=mpd,%any play-pause", { locked = true })
-
 exec("", "XF86AudioNext", "playerctl --player=mpd,%any next", { locked = true })
-
 exec("", "XF86AudioPrev", "playerctl --player=mpd,%any previous", { locked = true })
-
 exec("", "XF86AudioRaiseVolume", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+", { locked = true })
-
 exec("", "XF86AudioLowerVolume", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-", { locked = true })
-
 exec("", "XF86AudioMute", "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle", { locked = true })
 
+-- Focus Navigation
 bind(mod, "H", hl.dsp.focus({ direction = "left" }))
 bind(mod, "LEFT", hl.dsp.focus({ direction = "left" }))
 
@@ -71,9 +64,32 @@ bind("ALT", "TAB", hl.dsp.window.cycle_next())
 -- Woomer (Screen Zoom)
 exec(mod, "Z", "woomer")
 
+-- ==========================================
+-- Window Resizing (Tiled & Floating)
+-- ==========================================
+-- Using SUPER + CTRL + [H, J, K, L] or arrow keys for resizing active windows.
+-- Automatically handles floating vs tiled constraints via dispatchers.
+
+local resize_amount = 30
+
+-- Resize Left
+bind(mod .. " CTRL", "H", hl.dsp.window.resize({ x = -resize_amount, y = 0 }))
+bind(mod .. " CTRL", "LEFT", hl.dsp.window.resize({ x = -resize_amount, y = 0 }))
+
+-- Resize Right
+bind(mod .. " CTRL", "L", hl.dsp.window.resize({ x = resize_amount, y = 0 }))
+bind(mod .. " CTRL", "RIGHT", hl.dsp.window.resize({ x = resize_amount, y = 0 }))
+
+-- Resize Up
+bind(mod .. " CTRL", "K", hl.dsp.window.resize({ x = 0, y = -resize_amount }))
+bind(mod .. " CTRL", "UP", hl.dsp.window.resize({ x = 0, y = -resize_amount }))
+
+-- Resize Down
+bind(mod .. " CTRL", "J", hl.dsp.window.resize({ x = 0, y = resize_amount }))
+bind(mod .. " CTRL", "DOWN", hl.dsp.window.resize({ x = 0, y = resize_amount }))
+
 -- Layout Controls
 -- Switch layouts independently for each workspace.
-
 local layouts = {
 	"dwindle",
 	"master",
@@ -86,8 +102,6 @@ local function get_active_workspace()
 end
 
 -- Build the selector Hyprland expects for a workspace rule.
--- Special workspaces use their full name, named workspaces use "name:<name>",
--- and plain numbered workspaces use their id.
 local function workspace_selector(workspace)
 	if workspace.special then
 		return tostring(workspace.name)
@@ -148,7 +162,6 @@ end)
 
 -- Window Actions
 bind(mod, "Q", hl.dsp.window.close())
-
 bind(mod, "SPACE", hl.dsp.window.float({ action = "toggle" }))
 
 -- Restore focused window to current workspace (Super + Ctrl + Backspace)
@@ -207,7 +220,6 @@ exec(mod .. " SHIFT", "R", "hypr-reload")
 
 -- Mouse binds for moving/resizing windows
 bind(mod, "mouse:272", hl.dsp.window.drag(), { mouse = true })
-
 bind(mod, "mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Window movement / workspace cycling with super + scroll
